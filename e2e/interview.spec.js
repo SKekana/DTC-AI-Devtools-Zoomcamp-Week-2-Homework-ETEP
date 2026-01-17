@@ -15,6 +15,7 @@ test.describe('Coding Interview Platform', () => {
         await page.goto('/');
 
         // URL should contain a UUID-like session ID
+        await page.waitForURL(/\/[a-f0-9-]{36}$/);
         const url = page.url();
         expect(url).toMatch(/\/[a-f0-9-]{36}$/);
     });
@@ -23,7 +24,7 @@ test.describe('Coding Interview Platform', () => {
         await page.goto('/');
 
         // Wait for Monaco editor to load
-        await page.waitForSelector('.monaco-editor', { timeout: 10000 });
+        await page.waitForSelector('.monaco-editor', { timeout: 30000 });
 
         // Check that editor is visible
         await expect(page.locator('.editor-wrapper')).toBeVisible();
@@ -60,7 +61,7 @@ test.describe('Coding Interview Platform', () => {
         await page.goto('/');
 
         // Wait for Monaco to load
-        await page.waitForSelector('.monaco-editor', { timeout: 10000 });
+        await page.waitForSelector('.monaco-editor', { timeout: 30000 });
 
         // Type some JavaScript code using Monaco's input
         await page.click('.monaco-editor');

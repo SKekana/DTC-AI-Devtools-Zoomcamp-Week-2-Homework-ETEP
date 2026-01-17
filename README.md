@@ -86,6 +86,8 @@ cd server && npm test
 npm run test:e2e
 ```
 
+The test script installs Playwright browsers automatically on first run.
+
 ## Usage
 
 1. **Start an Interview**: Navigate to the app to get a unique session URL
