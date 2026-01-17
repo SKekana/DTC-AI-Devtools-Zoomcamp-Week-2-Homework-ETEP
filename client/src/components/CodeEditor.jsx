@@ -10,7 +10,7 @@ import Editor from '@monaco-editor/react';
 function CodeEditor({ value, onChange, language }) {
     const handleEditorChange = (val) => {
         if (onChange) {
-            onChange(val);
+            onChange(val ?? '');
         }
     };
 
@@ -21,6 +21,13 @@ function CodeEditor({ value, onChange, language }) {
             theme="vs-dark"
             value={value}
             onChange={handleEditorChange}
+            loading={(
+                <textarea
+                    className="monaco-editor fallback-editor"
+                    value={value}
+                    onChange={(event) => onChange?.(event.target.value)}
+                />
+            )}
             options={{
                 minimap: { enabled: false },
                 fontSize: 14,
